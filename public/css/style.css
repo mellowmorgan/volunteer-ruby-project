@@ -50,6 +50,8 @@ h1{
 a {
   color:white !important;
 }
-button{
-  margin-top:1rem;
+
+.btn-danger{
+ margin-top:1rem;
+ width: 7.3rem; 
 }
