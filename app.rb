@@ -70,7 +70,7 @@ end
 
 get('/projects/:id') do
   @project = Project.find(params[:id].to_i)
-  @volunteers = @project.volunteers
+  @volunteers = Volunteer.all
   erb(:project)
 end
 
@@ -84,4 +84,8 @@ delete('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @project.delete
   redirect '/projects'
+end
+
+post('/projects/:id/new-volunteer') do
+
 end

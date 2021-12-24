@@ -30,20 +30,29 @@
 
   <div class="info-card">
     <h2>Volunteer List</h2>
-      <>
-    <h3>Add Volunteer</h3>
-    <form method="post" action="/projects/<%= @project.id %>" class="form">
-      <input type="hidden" value="patch" name="_method"> 
+      <% @project.volunteers.any? %>
+      <ul>
+        <% @project.volunteers.each do |volunteer| %>
+          <li><%= volunteer.name %></li>
+      </ul>
+      <% else %>
+        No volunteers on this project yet.
+      <% end %>
+    <h3>Add Volunteer to Project</h3>
+    <form method="post" action="/projects/<%= @project.id %>/new-volunteer" class="form">
       <div class="form-group">
-        <label for="project">Title:</label>
-        <input value="<%= @project.title %>" type="text" class="form-control" id="project" name="project">
+        <select class="form-control" name="project">
+          <option selected value=""></option>
+          <% if @volunteers.any? %>
+            <% @volunteers.each do |volunteer| %>
+            <option value="<%= volunteer.id %>"><%= volunteer.name %></option>
+            <% end %>
+        <% end %>
+      </select>
       </div>
-      <button type="submit" class="btn btn-secondary">Update</button>
+      <button type="submit" class="btn btn-secondary">Add</button>
     </form>  
-    <form class="form" action="/projects/<%= @project.id %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+   
   </div>
   
   </div>
