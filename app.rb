@@ -86,6 +86,6 @@ delete('/projects/:id') do
   redirect '/projects'
 end
 
-post('/projects/:id/new-volunteer') do
+# post('/projects/:id/new-volunteer') do
 
-end
+# end
