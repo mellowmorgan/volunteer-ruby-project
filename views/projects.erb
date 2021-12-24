@@ -4,14 +4,13 @@
       <a class="navbar-brand" href="#">Volunteer Tracker</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/">Home</a></li>
       <li class="active"><a href="/projects">Projects</a></li>
       <li><a href="/volunteers">Volunteers</a></li>
     </ul>
   </div>
 </nav>
 <div class="container">
-  <h1>Projects Page</h1>
+  <h1>Volunteer Tracker</h1>
   <div class="info-card">
     <h2>Current Projects</h2>
     <% if @projects.any? %>  
@@ -21,7 +20,7 @@
         <% if project.volunteers.any? %>
           <ul>
             <% project.volunteers.each do |volunteer| %>
-              <li>Volunteer: <%= volunteer.name %></li>
+              <li><a href="/volunteers/<%= volunteer.id %>">Volunteer: <%= volunteer.name %></a></li>
             <% end %>
           </ul>
         <% end %>
@@ -32,7 +31,7 @@
     <% end %>
   </div>
   <div class="form-holder">
-    <h3>Add a New Volunteer</h3>
+    <h3>Add a New Project</h3>
     <form method="post" action="/projects" class="form">
       <div class="form-group">
         <label for="project">Title:</label>
