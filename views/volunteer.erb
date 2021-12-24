@@ -12,7 +12,7 @@
 </nav>
 <div class="container">
   <h1><%= @volunteer.name %></h1>
-  <div class="info-card form-holder">
+  <div class="info-card">
     <h2>Update Volunteer</h2>
     <form method="post" action="/volunteers/<%= @volunteer.id %>" class="form">
       <input type="hidden" value="patch" name="_method"> 
