@@ -62,5 +62,10 @@ patch('/volunteers/:id') do
   redirect '/volunteers'
 end
 
+delete('/volunteers/:id') do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.delete
+  redirect '/volunteers'
+end
 
 

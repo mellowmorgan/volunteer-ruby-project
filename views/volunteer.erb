@@ -31,10 +31,11 @@
           <% end %>
         </select>
       </div>
-      <button type="submit" class="btn">Update</button>
-    </form>
-    <form>
-    Delete?
+      <button type="submit" class="btn btn-secondary">Update</button>
+    </form>  
+    <form class="form" action="/volunteers/<%= @volunteer.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger">Delete</button>
     </form>
   </div>
   
