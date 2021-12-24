@@ -17,7 +17,7 @@
     <% if @projects.any? %>  
     <ol>
       <% @projects.each do |project| %>
-      <li><%= project.title %></li>
+      <li><a href="/projects/<%= project.id %>"><%= project.title %></a></li>
         <% if project.volunteers.any? %>
           <ul>
             <% project.volunteers.each do |volunteer| %>
