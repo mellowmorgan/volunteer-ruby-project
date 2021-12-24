@@ -30,4 +30,13 @@ class Project
     result = DB.exec("SELECT * FROM projects WHERE id=#{id};").first
     Project.new({ :id => result.fetch("id").to_i, :title => result.fetch("title")})
   end
+  
+  def update(attributes)
+    @title = attributes.fetch(:title)
+    DB.exec("UPDATE projects SET title='#{@title}' WHERE id=#{@id};")
+  end
+
+  # def delete
+
+  # end
 end
