@@ -37,12 +37,8 @@ get('/volunteers') do
 end
 
 post('/volunteers') do
-  if params[:project_id] == "nil"
-    project_id = nil
-  else
-    project_id = params[:project_id].to_i
-  end
-  new_volunteer = Volunteer.new({:name => params[:volunteer], :project_id => project_id, :id => nil })
+  # new_volunteer = Volunteer.new({:name => params[:volunteer], :project_id => params[:project].to_i, :id => nil })
+  new_volunteer = Volunteer.new({:name => params[:volunteer], :project_id => params[:project].to_i, :id => nil })
   new_volunteer.save
   @volunteers = Volunteer.all
   @projects = Project.all

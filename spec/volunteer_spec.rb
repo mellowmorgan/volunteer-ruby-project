@@ -7,8 +7,8 @@ describe Volunteer do
       expect(test_volunteer.name).to eq 'Jane'
     end
     it 'allow volunteer to have nil project_id' do
-      test_volunteer = Volunteer.new({:name => 'Jane', :project_id => nil, :id => nil})
-      expect(test_volunteer.project_id).to eq nil
+      test_volunteer = Volunteer.new({:name => 'Jane', :project_id => 0, :id => nil})
+      expect(test_volunteer.project_id).to eq 0
     end
   end
 
@@ -51,21 +51,26 @@ describe Volunteer do
 
   describe '.find' do
     it 'returns a volunteer by id' do
-      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 0, :id => nil})
       volunteer1.save
-      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})
-      volunteer2.save
       expect(Volunteer.find(volunteer1.id)).to eq volunteer1
     end
   end
 
   describe '#update' do
     it 'allows a user to update a volunteer' do
-     volunteer = Volunteer.new({:name => 'Morgan', :project_id => nil, :id => nil})
+     volunteer = Volunteer.new({:name => 'Morgan', :project_id => 0, :id => nil})
       volunteer.save
       volunteer.update({:name => 'Elizabeth', :project_id => 1})
       expect(volunteer.project_id).to eq 1
     end
+    it 'makes sure project id is updating' do
+      volunteer = Volunteer.new({:name => 'Morgan', :project_id => 0, :id => nil})
+       volunteer.save
+       volunteer.update({:name => 'Elizabeth', :project_id => 1})
+       p = Volunteer.find(volunteer.id)
+       expect(p.project_id = 1).to eq 1
+     end
   end
 
   context '#delete' do

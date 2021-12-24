@@ -18,7 +18,13 @@
     <ol>
       <% @projects.each do |project| %>
       <li><%= project.title %></li>
-        do code here for volunteers of each project, displayed as ul
+        <% if project.volunteers.any? %>
+          <ul>
+            <% project.volunteers.each do |volunteer| %>
+              <li>Volunteer: <%= volunteer.name %></li>
+            <% end %>
+          </ul>
+        <% end %>
       <% end %>
     </ol>
     <% else %>
