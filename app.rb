@@ -86,6 +86,12 @@ delete('/projects/:id') do
   redirect '/projects'
 end
 
-# post('/projects/:id/new-volunteer') do
-
-# end
+patch('/projects/:id/new-volunteer') do
+  volunteer_new = params[:volunteer].to_i
+  if volunteer_new != ""
+    volunteer=Volunteer.find(volunteer_new)
+    target_project_id = params[:id].to_i
+    volunteer.update({:name => volunteer.name, :project_id => target_project_id})
+  end
+  redirect '/projects'
+end

@@ -4,7 +4,7 @@ body{
 .navbar-default{
   background-color:#B7E9F7;
 }
-h1{
+h1,h2,h3{
   text-align: center;
   color:#555;
 }

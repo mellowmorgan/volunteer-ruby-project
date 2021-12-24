@@ -31,11 +31,15 @@
       <p>No projects currently to display</p>
     <% end %>
   </div>
-  <div class="button-holder">
-    <form method="post" action="/projects" class="form-inline">
-      <label for="project">
-      <input class="form-control" id="project" name="project">
-      <button class="btn btn-light">Add Project</button>
+  <div class="form-holder">
+    <h3>Add a New Volunteer</h3>
+    <form method="post" action="/projects" class="form">
+      <div class="form-group">
+        <label for="project">Title:</label>
+        <input class="form-control" id="project" name="project">
+      </div>
+        <button type="submit" class="btn btn-light">Add Project</button>
+     
     </form>
   </div>
 </div>
