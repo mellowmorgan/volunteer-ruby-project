@@ -1,0 +1,12 @@
+body{
+  background-color: #DBF3FA;
+}
+.navbar-default{
+  background-color:#B7E9F7;
+}
+h1{
+  color:black;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+  background-color:#92DFF3;
+}
