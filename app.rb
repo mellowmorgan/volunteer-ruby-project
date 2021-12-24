@@ -31,12 +31,20 @@ post('/projects') do
 end
 
 get('/volunteers') do
-  new_volunteer = Volunteer.new({:name => params[:volunteer], :project_id = params[:project] :id => nil })
-  new_project.save
   @volunteers = Volunteer.all
+  @projects = Project.all
   erb(:volunteers)
 end
 
 post('/volunteers') do
+  if params[:project_id] == "nil"
+    project_id = nil
+  else
+    project_id = params[:project_id].to_i
+  end
+  new_volunteer = Volunteer.new({:name => params[:volunteer], :project_id => project_id, :id => nil })
+  new_volunteer.save
   @volunteers = Volunteer.all
+  @projects = Project.all
+  erb(:volunteers)
 end
