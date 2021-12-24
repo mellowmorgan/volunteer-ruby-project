@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Volunteer Tracker</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li class="active"><a href="/volunteers">Volunteers</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h1>Volunteer Page</h1>
+  <div class="info-card">
+    <h2>Current Volunteers</h2>
+    <% if @volunteers.any? %>  
+    <ul>
+      <% @volunteers.each do |volunteer| %>
+      <li><%= volunteer.name %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No volunteers currently to display</p>
+    <% end %>
+  </div>
+  <div class="button-holder">
+    <form method="post" action="/volunteers" class="form-inline">
+      <label for="volunteer">
+      <input class="form-control" id="volunteer" name="volunteer">
+      <button class="btn btn-light">Add Volunteer</button>
+    </form>
+  </div>
+</div>

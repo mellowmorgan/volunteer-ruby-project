@@ -18,4 +18,25 @@ get('/home') do
   erb(:home)
 end
 
+get('/projects') do
+  @projects = Project.all
+  erb(:projects)
+end
 
+post('/projects') do
+  new_project = Project.new({:title => params[:project], :id => nil })
+  new_project.save
+  @projects = Project.all
+  erb(:projects)
+end
+
+get('/volunteers') do
+  new_volunteer = Volunteer.new({:name => params[:volunteer], :project_id = params[:project] :id => nil })
+  new_project.save
+  @volunteers = Volunteer.all
+  erb(:volunteers)
+end
+
+post('/volunteers') do
+  @volunteers = Volunteer.all
+end

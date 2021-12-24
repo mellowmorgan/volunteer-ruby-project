@@ -27,3 +27,8 @@ h1{
 .info-card li,p{
   font-size:2rem;
 }
+.button-holder{
+  text-align:center;
+  margin:4rem;
+  padding: 2rem;
+}
