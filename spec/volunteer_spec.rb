@@ -37,21 +37,40 @@ describe Volunteer do
     end
   end
 
-#   describe '#save' do
-#     it 'adds a volunteer to the database' do
-#       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
-#       volunteer1.save
-#       expect(Volunteer.all).to eq [volunteer1]
-#     end
-#   end
+  describe '#save' do
+    it 'adds a volunteer to the database' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      expect(Volunteer.all).to eq [volunteer1]
+    end
+  end
 
-#   describe '.find' do
-#     it 'returns a volunteer by id' do
-#       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
-#       volunteer1.save
-#       volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})
-#       volunteer2.save
-#       expect(Volunteer.find(volunteer1.id)).to eq volunteer1
-#     end
-#   end
+  describe '.find' do
+    it 'returns a volunteer by id' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})
+      volunteer2.save
+      expect(Volunteer.find(volunteer1.id)).to eq volunteer1
+    end
+  end
+
+  describe '#update' do
+    it 'allows a user to update a volunteer' do
+     volunteer = Volunteer.new({:name => 'Morgan', :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.update({:name => 'Elizabeth', :project_id => 1, :id => nil})
+      expect(volunteer.name).to eq 'Elizabeth'
+    end
+  end
+
+  context '#delete' do
+    it 'allows a user to delete a volunteer' do
+      volunteer = Volunteer.new({:name => 'Elizabeth', :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.delete
+      expect(Volunteer.all).to eq []
+    end
+  end
+
 end

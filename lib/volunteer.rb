@@ -26,4 +26,18 @@ class Volunteer
     end
     all_volunteers
   end
+  def self.find(id)
+    result = DB.exec("SELECT * FROM volunteers WHERE id=#{id};").first
+    Volunteer.new({ :id => result.fetch("id").to_i, :project_id => result.fetch("project_id").to_i, :name => result.fetch("name")})
+  end
+  
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    @project_id = attributes.fetch(:project_id)
+    DB.exec("UPDATE volunteers SET name='#{@name}', project_id=#{@project_id} WHERE id=#{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM volunteers WHERE id=#{@id};")
+  end
 end
