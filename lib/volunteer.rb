@@ -10,7 +10,13 @@ class Volunteer
   end
   
   def save
-    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
+    # I wanted to allow volunteer to be onboarded without project assigned to them yet, on update they can assign them a project_id
+    if(@project_id == nil)
+      sql_project_id = 'null'
+    else
+      sql_project_id = @project_id
+    end
+    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{sql_project_id}) RETURNING id;")
     @id = result.first.fetch("id").to_i
   end
 

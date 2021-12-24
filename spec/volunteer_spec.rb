@@ -6,6 +6,10 @@ describe Volunteer do
       test_volunteer = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       expect(test_volunteer.name).to eq 'Jane'
     end
+    it 'allow volunteer to have nil project_id' do
+      test_volunteer = Volunteer.new({:name => 'Jane', :project_id => nil, :id => nil})
+      expect(test_volunteer.project_id).to eq nil
+    end
   end
 
   describe '#project_id' do
@@ -57,10 +61,10 @@ describe Volunteer do
 
   describe '#update' do
     it 'allows a user to update a volunteer' do
-     volunteer = Volunteer.new({:name => 'Morgan', :project_id => 1, :id => nil})
+     volunteer = Volunteer.new({:name => 'Morgan', :project_id => nil, :id => nil})
       volunteer.save
-      volunteer.update({:name => 'Elizabeth', :project_id => 1, :id => nil})
-      expect(volunteer.name).to eq 'Elizabeth'
+      volunteer.update({:name => 'Elizabeth', :project_id => 1})
+      expect(volunteer.project_id).to eq 1
     end
   end
 
@@ -72,5 +76,4 @@ describe Volunteer do
       expect(Volunteer.all).to eq []
     end
   end
-
 end
