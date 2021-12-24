@@ -5,8 +5,25 @@ body{
   background-color:#B7E9F7;
 }
 h1{
-  color:black;
+  text-align: center;
+  color:#555;
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
   background-color:#92DFF3;
+}
+.info-card{
+  background-color:#92DFF3;
+  margin:4rem;
+  color:white;
+  padding: 2rem;
+}
+.info-card h2{
+  margin-left:2rem;
+}
+.info-card li,p{
+  margin-left: 4rem;
+}
+
+.info-card li,p{
+  font-size:2rem;
 }
