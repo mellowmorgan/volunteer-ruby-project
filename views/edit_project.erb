@@ -9,17 +9,18 @@
     </ul>
   </div>
 </nav>
+
 <div class="container">
   <h1><%= @project.title %></h1>
   <div class="info-card">
-    <h2><a href="/projects/<%= @project.id %>/update">Edit Project</a></h2>
-    <form method="post" action="/projects/<%= @project.id %>" class="form">
+    <h2>Update Project</h2>
+    <form method="post" action="/projects/<%= @project.id %>/update" class="form">
       <input type="hidden" value="patch" name="_method"> 
       <div class="form-group">
-        <label for="project">Title:</label>
-        <input value="<%= @project.title %>" type="text" class="form-control" id="project" name="project">
+        <label for="title">Title:</label>
+        <input value="<%= @project.title %>" type="text" class="form-control" id="title" name="title">
       </div>
-      <button type="submit" class="btn btn-secondary">Update</button>
+      <button type="submit" class="btn btn-secondary">Update Project</button>
     </form>  
     <form class="form" action="/projects/<%= @project.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
