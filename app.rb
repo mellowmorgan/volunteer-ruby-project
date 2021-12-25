@@ -38,6 +38,16 @@ post('/volunteers') do
   @projects = Project.all
   erb(:volunteers)
 end
+get('/projects/:project_id/volunteers/:id') do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @projects = Project.all
+  if @volunteer.project_id == 0
+    @project_title = "none yet"
+  else
+    @project_title = Project.find(@volunteer.project_id).title
+  end
+  erb(:volunteer)
+end
 
 get('/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
@@ -53,7 +63,14 @@ end
 patch('/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
   # @projects = Project.all
-  @volunteer.update({:name => params[:volunteer], :project_id => params[:project].to_i})
+  @volunteer.update({:name => params[:name], :project_id => params[:project].to_i})
+  redirect '/volunteers'
+end
+
+patch('projects/:project_id/volunteers/:id') do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  # @projects = Project.all
+  @volunteer.update({:name => params[:name], :project_id => params[:project].to_i})
   redirect '/volunteers'
 end
 
@@ -62,26 +79,30 @@ delete('/volunteers/:id') do
   @volunteer.delete
   redirect '/volunteers'
 end
-
+delete('projects/:project_id/volunteers/:id') do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.delete
+  redirect '/volunteers'
+end
 get('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @volunteers = Volunteer.all
   erb(:project)
 end
 
-get('/projects/:id/update') do
+get('/projects/:id/edit') do
   @project = Project.find(params[:id].to_i)
   @volunteers = Volunteer.all
   erb(:edit_project)
 end
 
-patch('/projects/:id/update') do
+patch('/projects/:id/edit') do
   @project = Project.find(params[:id].to_i)
   @project.update({:title => params[:title]})
   redirect '/projects'
 end
 
-delete('/projects/:id') do
+delete('/projects/:id/edit') do
   @project = Project.find(params[:id].to_i)
   @project.delete
   redirect '/projects'

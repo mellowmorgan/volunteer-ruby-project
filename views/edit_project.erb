@@ -14,7 +14,7 @@
   <h1><%= @project.title %></h1>
   <div class="info-card">
     <h2>Update Project</h2>
-    <form method="post" action="/projects/<%= @project.id %>/update" class="form">
+    <form method="post" action="/projects/<%= @project.id %>/edit" class="form">
       <input type="hidden" value="patch" name="_method"> 
       <div class="form-group">
         <label for="title">Title:</label>
@@ -22,43 +22,10 @@
       </div>
       <button type="submit" class="btn btn-secondary">Update Project</button>
     </form>  
-    <form class="form" action="/projects/<%= @project.id %>" method="post">
+    <form class="form" action="/projects/<%= @project.id %>/edit" method="post">
       <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="btn btn-danger">Delete</button>
+      <button type="submit" class="btn btn-danger">Delete Project</button>
     </form>
   </div>
 
-  <div class="info-card">
-    <h2>Volunteer List</h2>
-      <% if @project.volunteers.any? %>
-      <ul>
-        <% @project.volunteers.each do |volunteer| %>
-          <li><%= volunteer.name %></li>
-          <% end %> 
-      </ul>
-      <% else %>
-        No volunteers on this project yet.
-      <% end %>
-    
-      <h3>Add Volunteer to Project</h3>
-      <em>Warning: this action will remove them from their current project.</em>
-    <form method="post" action="/projects/<%= @project.id %>/new-volunteer" class="form">
-      <input value="patch" name="_method" type="hidden">
-      <div class="form-group">
-        <select class="form-control" name="volunteer">
-          <option selected value="">--</option>
-          <% if @volunteers.any? %>
-            <% @volunteers.each do |volunteer| %>
-            <option value="<%= volunteer.id %>"><%= volunteer.name %></option>
-          <% end %>
-        <% end %>
-      </select>
-      </div>
-      <button type="submit" class="btn btn-secondary">Add</button>
-    </form>  
-   
-  </div>
-  
-  
-  
 </div>

@@ -16,8 +16,8 @@
     <form method="post" action="/volunteers/<%= @volunteer.id %>" class="form">
       <input type="hidden" value="patch" name="_method"> 
       <div class="form-group">
-        <label for="volunteer">Name:</label>
-        <input value="<%= @volunteer.name %>" type="text" class="form-control" id="volunteer" name="volunteer">
+        <label for="name">Name:</label>
+        <input value="<%= @volunteer.name %>" type="text" class="form-control" id="name" name="name">
       </div>
       <div class="form-group">
         <label>Working on project:</label>
@@ -30,7 +30,7 @@
           <% end %>
         </select>
       </div>
-      <button type="submit" class="btn btn-secondary">Update</button>
+      <button type="submit" class="btn btn-secondary">Update Volunteer</button>
     </form>  
     <form class="form" action="/volunteers/<%= @volunteer.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
