@@ -35,7 +35,7 @@
           <option selected value="">--</option>
           <% if @volunteers.any? %>
             <% @volunteers.each do |volunteer| %>
-            <option value="<%= volunteer.id %>"><%= volunteer.name %></option>
+            <option name="<%= volunteer.name %>" value="<%= volunteer.id %>"><%= volunteer.name %></option>
           <% end %>
         <% end %>
       </select>

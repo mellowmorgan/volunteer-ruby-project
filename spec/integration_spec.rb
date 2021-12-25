@@ -65,3 +65,43 @@ describe 'the volunteer detail page path', {:type => :feature} do
     expect(page).to have_content('Jane')
   end
 end
+
+describe 'add volunteer to project', {:type => :feature} do
+  it 'shows volunteer on project list of project page' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => nil, :id => nil})
+    test_volunteer.save
+    visit "/projects/#{project_id}"
+    select "Jasmine", :from => "volunteer"
+    click_button('Add')
+    expect(page).to have_content('Jasmine')
+  end
+end
+
+describe 'delete volunteer', {:type => :feature} do
+  it 'volunteer is gone from page' do
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => nil, :id => nil})
+    test_volunteer.save
+    visit "/projects/#{project_id}"
+    select "Jasmine", :from => "volunteer"
+    click_button('Add')
+    expect(page).to have_content('Jasmine')
+  end
+end
+
+# describe 'add volunteer to project on volunteer page', {:type => :feature} do
+#   it 'shows volunteer on project list of project page' do
+#     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+#     test_project.save
+#     project_id = test_project.id.to_i
+#     test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => 0, :id => nil})
+#     test_volunteer.save
+#     visit "/projects/#{project_id}"
+#     select "Jasmine", :from => "volunteer"
+#     click_button('Add')
+#     expect(page).to have_content('Jasmine')
+#   end
+# end
