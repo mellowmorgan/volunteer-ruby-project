@@ -91,16 +91,18 @@ describe 'delete volunteer', {:type => :feature} do
   end
 end
 
-# describe 'add volunteer to project on volunteer page', {:type => :feature} do
-#   it 'shows volunteer on project list of project page' do
-#     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-#     test_project.save
-#     project_id = test_project.id.to_i
-#     test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => 0, :id => nil})
-#     test_volunteer.save
-#     visit "/projects/#{project_id}"
-#     select "Jasmine", :from => "volunteer"
-#     click_button('Add')
-#     expect(page).to have_content('Jasmine')
-#   end
-# end
+describe 'add volunteer to project on volunteer page', {:type => :feature} do
+  it 'shows volunteer on project list of project page' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => nil, :id => nil})
+    test_volunteer.save
+    visit "/volunteers/#{test_volunteer.id}"
+    select "Teaching Kids to Code", :from => "project"
+    click_button('Update Volunteer')
+    click_link('Projects')
+    click_link('Teaching Kids to Code')
+    expect(page).to have_content('Jasmine')
+  end
+end
