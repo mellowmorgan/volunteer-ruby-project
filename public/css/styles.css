@@ -23,16 +23,20 @@ h1,h2,h3{
 .info-card li,p{
   margin-left: 4rem;
 }
+.info-card .btn-secondary{
+  color:black;
+}
 
 .info-card li,p{
   font-size:2rem;
 }
-.button-holder{
-  
-  text-align:center;
-  margin:4rem;
-  padding: 2rem;
+
+.info-card .form{
+  margin-left:4rem;
+  margin-right:4rem;
 }
+
+
 .form-holder{
   width:fit-content;
   margin-left:auto;

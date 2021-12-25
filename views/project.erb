@@ -4,8 +4,8 @@
       <a class="navbar-brand" href="#">Volunteer Tracker</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/projects">Projects</a></li>
-      <li class="active"><a href="/volunteers">Volunteers</a></li>
+      <li class="active"><a href="/projects">Projects</a></li>
+      <li ><a href="/volunteers">Volunteers</a></li>
     </ul>
   </div>
 </nav>
@@ -18,7 +18,7 @@
       <% if @project.volunteers.any? %>
       <ul>
         <% @project.volunteers.each do |volunteer| %>
-          <li><a href="/projects/<%= @project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></li>
+          <li><a href="/projects/<%= @project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
           <% end %> 
       </ul>
       <% else %>
@@ -26,8 +26,9 @@
       <% end %>
     
       <h3>Add Volunteer to Project</h3>
-      <em>Warning: this action will remove them from their current project.</em>
+      
     <form method="post" action="/projects/<%= @project.id %>/new-volunteer" class="form">
+    <em>Warning: this action will remove them from their current project.</em>
       <input value="patch" name="_method" type="hidden">
       <div class="form-group">
         <select class="form-control" name="volunteer">
