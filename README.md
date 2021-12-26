@@ -25,7 +25,7 @@
 
 * Create and/or navigate to the directory you would like to contain this project on your computer.
 * Type **git clone https://github.com/mellowmorgan/volunteer-ruby-project.git to clone the repository to your local machine.
-* Navigate into project directory by typing cd the_word_definer  
+* Navigate into project directory by typing cd volunteer-ruby-project
 * Type bundle install in the terminal to populate gems
 * To create a database using database backup included in this project, type in your terminal:   
       `createdb [DATABASE NAME]`  
