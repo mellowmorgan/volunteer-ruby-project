@@ -38,10 +38,7 @@ class Project
 
   def delete
     DB.exec("DELETE FROM projects WHERE id=#{@id};")
-    #because this project is gone, all volunteers associated with project must have project_id updated to 0, which represents no project
-    self.volunteers.each do |volunteer|
-      volunteer.update({:name => volunteer.name, :project_id => 0})
-    end
+    DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};")
   end
 
   def volunteers
