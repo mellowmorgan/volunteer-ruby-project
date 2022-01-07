@@ -70,19 +70,23 @@ describe 'add volunteer to project', {:type => :feature} do
   it 'shows volunteer on project list of project page' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
-    project_id = test_project.id.to_i
-    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => nil, :id => nil})
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => test_project.id, :id => nil})
     test_volunteer.save
-    visit "/projects/#{project_id}"
+    test_project_2 = Project.new({:title => 'Teaching Kids to Code 2', :id => nil})
+    test_project_2.save
+    visit "/projects/#{test_project_2.id}"
     select "Jasmine", :from => "volunteer"
     click_button('Add')
+    visit "/projects/#{test_project_2.id}"
     expect(page).to have_content('Jasmine')
   end
 end
 
 describe 'delete volunteer', {:type => :feature} do
   it 'volunteer is gone from page' do
-    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => nil, :id => nil})
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => test_project.id, :id => nil})
     test_volunteer.save
     visit "/volunteers"
     click_link('Jasmine')
@@ -96,13 +100,29 @@ describe 'add volunteer to project on volunteer page', {:type => :feature} do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     project_id = test_project.id.to_i
-    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => nil, :id => nil})
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => test_project.id, :id => nil})
     test_volunteer.save
+    test_project_2 = Project.new({:title => 'Teaching Kids to Code 2', :id => nil})
+    test_project_2.save
     visit "/volunteers/#{test_volunteer.id}"
-    select "Teaching Kids to Code", :from => "project"
+    select "Teaching Kids to Code 2", :from => "project"
     click_button('Update Volunteer')
     click_link('Projects')
-    click_link('Teaching Kids to Code')
+    click_link('Teaching Kids to Code 2')
     expect(page).to have_content('Jasmine')
+  end
+end
+describe 'delete project deletes volunteers associated', {:type => :feature} do
+  it 'volunteers are gone when project they belong to is deleted' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => test_project.id, :id => nil})
+    test_volunteer.save
+    id = test_project.id
+    visit "/projects/#{id}/edit"
+    click_button('Delete Project')
+    visit '/'
+    expect(page).to have_no_content('Jasmine')
   end
 end
