@@ -7,9 +7,7 @@ class Volunteer
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
     @project_id = attributes.fetch(:project_id)
-    if attributes.fetch(:project_id)==nil
-      @project_id=0
-    end
+    
   end
   
   def save

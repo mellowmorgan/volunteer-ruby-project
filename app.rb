@@ -41,22 +41,14 @@ end
 get('/projects/:project_id/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
   @projects = Project.all
-  if @volunteer.project_id == 0
-    @project_title = "none yet"
-  else
-    @project_title = Project.find(@volunteer.project_id).title
-  end
+  @project_title = Project.find(@volunteer.project_id).title
   erb(:volunteer)
 end
 
 get('/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
   @projects = Project.all
-  if @volunteer.project_id == 0
-    @project_title = "none yet"
-  else
-    @project_title = Project.find(@volunteer.project_id).title
-  end
+  @project_title = Project.find(@volunteer.project_id).title
   erb(:volunteer)
 end
 

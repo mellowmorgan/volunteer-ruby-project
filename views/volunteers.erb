@@ -33,7 +33,6 @@
       <div class="form-group">
         <label>Working on project:</label>
         <select class="form-control" name="project">
-          <option selected value="0">none yet</option>
           <% if @projects.any? %>
             <% @projects.each do |project| %>
             <option value="<%= project.id %>"><%= project.title %></option>
