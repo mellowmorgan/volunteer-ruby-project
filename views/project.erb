@@ -32,7 +32,6 @@
       <input value="patch" name="_method" type="hidden">
       <div class="form-group">
         <select class="form-control" name="volunteer">
-          <option selected value="">--</option>
           <% if @volunteers.any? %>
             <% @volunteers.each do |volunteer| %>
             <option name="<%= volunteer.name %>" value="<%= volunteer.id %>"><%= volunteer.name %></option>
