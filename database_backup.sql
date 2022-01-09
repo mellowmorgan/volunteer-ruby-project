@@ -122,7 +122,6 @@ COPY public.projects (id, title) FROM stdin;
 COPY public.volunteers (id, name, project_id) FROM stdin;
 1	Jane Flanders	8
 9	Daniel Glisan	8
-11	Bonnie Burnside	0
 7	Pettygrove Irving 	5
 8	Morgan Waites	7
 3	Alice Kearney	8
