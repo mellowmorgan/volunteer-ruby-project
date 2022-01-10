@@ -13,7 +13,7 @@
   <h1><%= @volunteer.name %></h1>
   <div class="info-card">
     <h2>Update Volunteer</h2>
-    <form method="post" action="/volunteers/<%= @volunteer.id %>" class="form">
+    <form method="post" action="/projects/<%= @volunteer.project_id %>/volunteers/<%= @volunteer.id %>" class="form">
       <input type="hidden" value="patch" name="_method"> 
       <div class="form-group">
         <label for="name">Name:</label>
@@ -32,7 +32,7 @@
       </div>
       <button type="submit" class="btn btn-secondary">Update Volunteer</button>
     </form>  
-    <form class="form" action="/volunteers/<%= @volunteer.id %>" method="post">
+    <form class="form" action="/projects/<%= @volunteer.project_id %>/volunteers/<%= @volunteer.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
       <button type="submit" class="btn btn-danger">Delete</button>
     </form>

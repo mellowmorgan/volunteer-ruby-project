@@ -28,7 +28,7 @@ end
 get('/volunteers') do
   @volunteers = Volunteer.all
   @projects = Project.all
-  erb(:volunteers)
+  erb(:volunteers_list)
 end
 
 post('/volunteers') do
@@ -36,8 +36,9 @@ post('/volunteers') do
   new_volunteer.save
   @volunteers = Volunteer.all
   @projects = Project.all
-  erb(:volunteers)
+  erb(:volunteers_list)
 end
+
 get('/projects/:project_id/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
   @projects = Project.all
@@ -45,36 +46,20 @@ get('/projects/:project_id/volunteers/:id') do
   erb(:volunteer)
 end
 
-get('/volunteers/:id') do
+patch('/projects/:project_id/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
-  @projects = Project.all
-  @project_title = Project.find(@volunteer.project_id).title
-  erb(:volunteer)
-end
-
-patch('/volunteers/:id') do
-  @volunteer = Volunteer.find(params[:id].to_i)
-  # @projects = Project.all
+  @project = Project.find(params[:project_id].to_i)
   @volunteer.update({:name => params[:name], :project_id => params[:project].to_i})
-  redirect '/volunteers'
+  @volunteers = Volunteer.all
+  erb(:project)
 end
 
-patch('projects/:project_id/volunteers/:id') do
+delete('/projects/:project_id/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
-  # @projects = Project.all
-  @volunteer.update({:name => params[:name], :project_id => params[:project].to_i})
-  redirect '/volunteers'
-end
-
-delete('/volunteers/:id') do
-  @volunteer = Volunteer.find(params[:id].to_i)
+  @project = Project.find(params[:project_id].to_i)
   @volunteer.delete
-  redirect '/volunteers'
-end
-delete('projects/:project_id/volunteers/:id') do
-  @volunteer = Volunteer.find(params[:id].to_i)
-  @volunteer.delete
-  redirect '/volunteers'
+  @volunteers = Volunteer.all
+  erb(:project)
 end
 get('/projects/:id') do
   @project = Project.find(params[:id].to_i)
