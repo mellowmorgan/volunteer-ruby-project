@@ -51,8 +51,8 @@ end
 
 # The user should be able to click on a project detail page and see a list of all volunteers working on that project. The user should be able to click on a volunteer to see the volunteer's detail page.
 
-describe 'the volunteer detail page path', {:type => :feature} do
-  it 'shows a volunteer detail page' do
+describe 'the volunteer update page path', {:type => :feature} do
+  it 'shows a volunteer and updates them' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     project_id = test_project.id.to_i
@@ -66,7 +66,7 @@ describe 'the volunteer detail page path', {:type => :feature} do
   end
 end
 
-describe 'add volunteer to project', {:type => :feature} do
+describe 'add existing volunteer to project', {:type => :feature} do
   it 'shows volunteer on project list of project page' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
@@ -82,7 +82,7 @@ describe 'add volunteer to project', {:type => :feature} do
   end
 end
 
-describe 'delete volunteer', {:type => :feature} do
+describe 'delete volunteer from volunteers page', {:type => :feature} do
   it 'volunteer is gone from page' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
@@ -94,8 +94,21 @@ describe 'delete volunteer', {:type => :feature} do
     expect(page).to have_no_content('Jasmine')
   end
 end
+describe 'delete volunteer from project nested route', {:type => :feature} do
+  it 'volunteer is gone from page' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => test_project.id, :id => nil})
+    test_volunteer.save
+    visit "/projects/#{test_project.id}"
+    click_link('Jasmine')
+    click_button('Delete')
+    expect(page).to have_no_content('Jasmine')
+  end
+end
 
-describe 'add volunteer to project on volunteer page', {:type => :feature} do
+
+describe 'add volunteer to project page', {:type => :feature} do
   it 'shows volunteer on project list of project page' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
@@ -110,6 +123,18 @@ describe 'add volunteer to project on volunteer page', {:type => :feature} do
     click_link('Projects')
     click_link('Teaching Kids to Code 2')
     expect(page).to have_content('Jasmine')
+  end
+end
+
+describe 'add volunteer from volunteers page', {:type => :feature} do
+  it 'shows volunteer of volunteers page' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    visit "/volunteers"
+    fill_in('volunteer', :with => 'Hasan')
+    select "Teaching Kids to Code", :from => "project"
+    click_button('Add Volunteer')
+    expect(page).to have_content('Hasan')
   end
 end
 describe 'delete project deletes volunteers associated', {:type => :feature} do
