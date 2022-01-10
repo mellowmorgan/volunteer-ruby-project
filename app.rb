@@ -92,8 +92,9 @@ end
 
 patch('/projects/:id/edit') do
   @project = Project.find(params[:id].to_i)
+  @volunteers = Volunteer.all
   @project.update({:title => params[:title]})
-  redirect '/projects'
+  erb(:project)
 end
 
 delete('/projects/:id/edit') do
@@ -104,10 +105,12 @@ end
 
 patch('/projects/:id/new-volunteer') do
   volunteer_new = params[:volunteer].to_i
+  @project = Project.find(params[:id].to_i)
+  @volunteers = Volunteer.all
   if volunteer_new != ""
     volunteer=Volunteer.find(volunteer_new)
     target_project_id = params[:id].to_i
     volunteer.update({:name => volunteer.name, :project_id => target_project_id})
   end
-  redirect '/projects'
+  erb(:project)
 end
