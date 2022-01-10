@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Volunteer Tracker</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/projects">Projects</a></li>
+      <li ><a href="/volunteers">Volunteers</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<div class="form-holder">
+    <h3>Add a New Volunteer</h3>
+    <form method="post" action="/projects/<%= @project.id %>/volunteers" class="form">
+      <div class="form-group">
+        <label for="volunteer">Name:</label>
+        <input type="text" class="form-control" id="volunteer" name="volunteer">
+      </div>
+      <div class="form-group">
+        <label>Working on project:</label>
+        <select class="form-control" name="project">
+        <option selected value="<%= @project.id %>"><%= @project.title %></option>
+          <% if @projects.any? %>
+            <% @projects.each do |project| %>
+            <option value="<%= project.id %>"><%= project.title %></option>
+            <% end %>
+          <% end %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-light">Add Volunteer</button>
+    </form>
+  </div>
+</div>
+</div>

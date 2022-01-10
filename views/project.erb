@@ -24,8 +24,8 @@
       <% else %>
         No volunteers on this project yet.
       <% end %>
-    
-      <h3>Add Volunteer to Project</h3>
+      <h3><a href="/projects/<%= @project.id %>/volunteers">Add New Volunteer to Project</a></h3>
+      <h3>Add Existing Volunteer to Project</h3>
       
     <form method="post" action="/projects/<%= @project.id %>/new-volunteer" class="form">
     <em>Warning: this action will remove them from their current project.</em>
