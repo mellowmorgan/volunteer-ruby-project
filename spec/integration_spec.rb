@@ -104,7 +104,7 @@ describe 'add volunteer to project on volunteer page', {:type => :feature} do
     test_volunteer.save
     test_project_2 = Project.new({:title => 'Teaching Kids to Code 2', :id => nil})
     test_project_2.save
-    visit "/volunteers/#{test_volunteer.id}"
+    visit "projects/#{test_project.id}/volunteers/#{test_volunteer.id}"
     select "Teaching Kids to Code 2", :from => "project"
     click_button('Update Volunteer')
     click_link('Projects')
